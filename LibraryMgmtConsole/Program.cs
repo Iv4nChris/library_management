@@ -18,8 +18,9 @@ namespace LibraryMgmtConsole
                 Console.WriteLine("3. Borrow Book");
                 Console.WriteLine("4. Return Book");
                 Console.WriteLine("5. Remove Book");
-                Console.WriteLine("6. Display all books");
-                Console.WriteLine("7. Exit");
+                Console.WriteLine("6. Find Book");
+                Console.WriteLine("7. Display all books");
+                Console.WriteLine("8. Exit");
 
                 Console.Write("Please select an option(1-6):");
                 string userEntry = Console.ReadLine();
@@ -55,32 +56,37 @@ namespace LibraryMgmtConsole
                         double bookRate = double.Parse(Console.ReadLine());
                         string rateResult = library.AddRating(bookId, bookRate)? "Rate Add Successfully" : "Book Not Found!";
                         Console.WriteLine("rateResult\n");
-                        continue;
+                        break;
                     case "3":
                         Console.Write("Enter the Book Id to Borrow\t:");
                         int bookid = int.Parse(Console.ReadLine());
                         string result = library.BorrowBook(bookid)? "Borrowed Successfully!" : "Book No Found!";
 
                         Console.WriteLine(result + "\n");
-                        continue;
+                        break;
                     case "4":
                         Console.Write("Enter the Book Id to Return\t:");
                         int bookidReturn = int.Parse(Console.ReadLine());
                         string resultReturn = library.ReturnBook(bookidReturn) ? "Return Book Successfully" : "Book Not Found!";
                         Console.WriteLine(resultReturn + "\n");
-                        continue;
+                        break;
                     case "5":
                         Console.Write("Enter the Book id to Remove\t:");
                         int removeId = int.Parse(Console.ReadLine());
                         string removeResult = library.RemoveBook(removeId) ? "Removed Successfully!" : "Book Not Found!" ;
                         Console.WriteLine(removeResult + "\n");
-                        continue;
+                        break;
                     case "6":
+                        Console.Write("Enter Title or Book Id To Search\t:");
+                        string? searchResult = Console.ReadLine();
+                        library.SearchBook(searchResult);
+                        break;
+                    case "7":
                         //Display Books
                         library.GetBooks(true);
                         Console.WriteLine("Enter to Continue!");
                         break;
-                    case "7":
+                    case "8":
                         //Exit Program
                         run = false;
                         Console.WriteLine("\n------ End of the Program! ------\n");

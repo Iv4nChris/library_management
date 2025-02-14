@@ -100,5 +100,19 @@ namespace LibraryMgmtConsole
         }
         #endregion
 
+        #region -- find book --
+        public void SearchBook(string value)
+        {
+            var result = book.Where(x => x.Value.Title.Contains(value) || x.Value.BookId == int.Parse(value)).ToList();
+            if (result.Count > 0) {
+                result.ForEach(x => Console.WriteLine($"\nID\t:{x.Key}\nTitle\t:{x.Value.Title}\nAuthor\t:{x.Value.Author}\nRating\t:{GetAverageRating(x.Key)}\n"));
+            }
+            else
+            {
+                Console.WriteLine("Book Not Found!");
+            }
+        }
+        #endregion
+
     }
 }
